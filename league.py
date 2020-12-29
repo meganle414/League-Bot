@@ -35,7 +35,7 @@ html = browser.execute_script("return document.getElementsByTagName('html')[0].i
 soup = BeautifulSoup(html, "html.parser")
 for item in soup.find_all('h1', class_='tier-list'):
     for item_text in item.find_all(name="span"):
-        st += (item_text.text + "\n")
+        st += (item_text.text + "\n")   # retrieves the h1 text and current patch number
         break
 for item in soup.find_all('div', class_='rt-tbody'):
     group = []  # group array variable to keep track of the stat texts that aren't associated with an image
