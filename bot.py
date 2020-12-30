@@ -4,7 +4,7 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 
 
-client = commands.Bot(command_prefix="l!")
+bot = commands.Bot(command_prefix="l!")
 
 
 def get_alt_img_text(item):
@@ -18,13 +18,13 @@ def get_champion_name(champion):
         return champion_text.text
 
 
-@client.event
+@bot.event
 async def on_ready():
     print("League Bot is ready to be used!")
 
 
-@client.command(aliases=['tl', 'TL'])
-async def tierlist(message, *num):
+@bot.command(aliases=['tl', 'TL'])
+async def tierlist(message, num=10):
     # initialize the arrays and other variables that will be used
     stats = []
     odd_roles = []
@@ -85,4 +85,5 @@ async def tierlist(message, *num):
     # close the automated browser
     browser.close()
 
-client.run("INSERT DISCORD TOKEN HERE") # my token is substituted out
+    
+bot.run("INSERT DISCORD TOKEN HERE") # my token is substituted out
