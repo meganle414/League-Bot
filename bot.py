@@ -3,8 +3,8 @@ from discord.ext import commands
 from selenium import webdriver
 from bs4 import BeautifulSoup
 
-
 bot = commands.Bot(command_prefix="l!")
+bot.remove_command('help')
 
 
 def get_alt_img_text(item):
@@ -24,7 +24,7 @@ async def on_ready():
 
 
 @bot.command(aliases=['tl', 'TL'])
-async def tierlist(message, num=10):
+async def tierlist(message, num=10, role="all"):
     # initialize the arrays and other variables that will be used
     stats = []
     odd_roles = []
@@ -35,7 +35,24 @@ async def tierlist(message, num=10):
     all_champions = []
     i = 0
     st = ""
-    base_url = 'https://u.gg/lol/tier-list'
+
+    role = role.lower()
+    if role in 'all, a':
+        base_url = 'https://u.gg/lol/tier-list'
+    elif role in 'top lane, top, tl, t':
+        base_url = 'https://u.gg/lol/top-lane-tier-list'
+    elif role in 'jungle, jg, j':
+        base_url = 'https://u.gg/lol/jungle-tier-list'
+    elif role in 'middle lane, mid lane, middle, mid, ml, m':
+        base_url = 'https://u.gg/lol/mid-lane-tier-list'
+    elif role in 'bot lane, bot, adc, apc, b':
+        base_url = 'https://u.gg/lol/adc-tier-list'
+    elif role in 'support, supp, sup, s':
+        base_url = 'https://u.gg/lol/support-tier-list'
+    else:
+        st += "Role could not be found! Using general tier list with all roles.\n"
+        base_url = 'https://u.gg/lol/tier-list'
+
     # invoke the webdriver
     browser = webdriver.Chrome(
         executable_path=r'C:\Users\moooo\Desktop\PycharmWorkspace\webdrivers\chromedriver.exe')
@@ -72,6 +89,11 @@ async def tierlist(message, num=10):
             all_champions.append(even_champions.pop(0))
         except IndexError:  # catch the exception when there are no remaining values in the individual arrays
             break  # exit the while loop
+
+    if num > 30:
+        st += "Sorry! The League bot can only get the top 30 ranked champions at the moment. Here are the top 30 " \
+              "champions.\n "
+
     count = 0  # variable to keep track of which group is currently being handled
     for group in stats:
         st += (group[0] + ". " + all_champions[count] + " " + all_roles[count] + " | " + group[1] + " tier | " + group[
@@ -85,5 +107,28 @@ async def tierlist(message, num=10):
     # close the automated browser
     browser.close()
 
-    
+
+@bot.command(pass_context=True)
+async def help(ctx):
+    author = ctx.message.author
+    embed = discord.Embed(
+        color=discord.Color.blue()
+    )
+    embed.set_author(name='Help')
+    embed.add_field(name='l!tierlist <Number> <Role>', value='Returns the first 30 ranked champions for all roles from '
+                                                             'u.gg unless specified otherwise.The number and role type '
+                                                             'is not necessary. If you want a role, then you must '
+                                                             'specify a number. The maximum number of statistics this '
+                                                             'bot can provide is 30.\n'
+                                                             '**Choose from the following roles (case insensitive):**\n'
+                                                             '**[all, a]**, **[top lane, top, tl, t]**, '
+                                                             '**[jungle, jg, j]**, '
+                                                             '**[middle lane, mid lane, middle, mid, ml, m]**,'
+                                                             '**[bot lane, bot, adc, apc, b]**, '
+                                                             '**[support, supp, sup, s]**\n'
+                                                             'Equivalent commands usable: tl, TL', inline=False)
+
+    await author.send(embed=embed)
+
+
 bot.run("INSERT DISCORD TOKEN HERE") # my token is substituted out
