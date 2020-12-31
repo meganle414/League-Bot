@@ -69,6 +69,7 @@ for group in stats:
     count += 1
 
 print(st)
+# add a search for a champion and role function. default to most common role
 
 # close the automated browser
 browser.close()
