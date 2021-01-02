@@ -18,6 +18,12 @@ def get_champion_name(champion):
         return champion_text.text
 
 
+def build_url(champion, role):
+    if role == "not specified":
+        return 'https://u.gg/lol/champions/' + champion + '/build'
+    return 'https://u.gg/lol/champions/' + champion + '/build?role=' + role
+
+
 @bot.event
 async def on_ready():
     print("League Bot is ready to be used!")
@@ -107,8 +113,24 @@ async def tierlist(message, num=10, role="all"):
     # close the automated browser
     browser.close()
 
+
 @bot.command(aliases=['s', 'S'])
-async def search(message, champion="NOT SURE", role="NOT SURE"):
+async def search(message, champion, role="not specified"):
+    st = ""
+    base_url = build_url(champion, role)
+
+    # invoke the webdriver
+    browser = webdriver.Chrome(
+        executable_path=r'C:\Users\moooo\Desktop\PycharmWorkspace\webdrivers\chromedriver.exe')
+    browser.get(base_url)
+    html = browser.execute_script("return document.getElementsByTagName('html')[0].innerHTML")
+    soup = BeautifulSoup(html, "html.parser")
+
+    for item in soup.find_all('div', class_='champion-label'):
+        for item_text in item.find_all(name="span"):
+            st += (item_text.text + "\n")  # retrieves the h1 text and current patch number
+
+    await message.send(st)
 
 
 @bot.command(pass_context=True)
@@ -131,7 +153,7 @@ async def help(ctx):
                                                              'Equivalent commands usable: tl, TL', inline=False)
 
     await author.send(embed=embed)
+    embed.set_author(name='Help')
 
 
 bot.run("INSERT TOKEN HERE")  # my token is substituted out
-    embed.set_author(name='Help')
