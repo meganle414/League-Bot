@@ -107,6 +107,9 @@ async def tierlist(message, num=10, role="all"):
     # close the automated browser
     browser.close()
 
+@bot.command(aliases=['s', 'S'])
+async def search(message, champion="NOT SURE", role="NOT SURE"):
+
 
 @bot.command(pass_context=True)
 async def help(ctx):
@@ -114,7 +117,6 @@ async def help(ctx):
     embed = discord.Embed(
         color=discord.Color.blue()
     )
-    embed.set_author(name='Help')
     embed.add_field(name='l!tierlist <Number> <Role>', value='Returns the first 30 ranked champions for all roles from '
                                                              'u.gg unless specified otherwise.The number and role type '
                                                              'is not necessary. If you want a role, then you must '
@@ -131,4 +133,5 @@ async def help(ctx):
     await author.send(embed=embed)
 
 
-bot.run("INSERT DISCORD TOKEN HERE") # my token is substituted out
+bot.run("INSERT TOKEN HERE")  # my token is substituted out
+    embed.set_author(name='Help')
