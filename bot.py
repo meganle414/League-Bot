@@ -128,7 +128,7 @@ async def search(message, champion, role="not specified"):
 
     for item in soup.find_all('div', class_='champion-label'):
         for item_text in item.find_all(name="span"):
-            st += (item_text.text + "\n")  # retrieves the h1 text and current patch number
+            st += (item_text.text + "\n")  # retrieves the champion's name and role name
 
     await message.send(st)
 
