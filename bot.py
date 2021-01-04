@@ -132,6 +132,9 @@ async def search(message, champion, role="not specified"):
 
     await message.send(st)
 
+    # close the automated browser
+    browser.close()
+
 
 @bot.command(pass_context=True)
 async def help(ctx):
@@ -155,5 +158,5 @@ async def help(ctx):
     await author.send(embed=embed)
     embed.set_author(name='Help')
 
-
+    
 bot.run("INSERT TOKEN HERE")  # my token is substituted out
