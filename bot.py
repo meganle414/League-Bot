@@ -20,8 +20,8 @@ def get_champion_name(champion):
 
 def build_url(champion, role):
     if role == "not specified":
-        return 'https://u.gg/lol/champions/' + champion + '/build'
-    return 'https://u.gg/lol/champions/' + champion + '/build?role=' + role
+        return "https://u.gg/lol/champions/{}/build".format(champion)
+    return "https://u.gg/lol/champions/{}/build?role={}".format(champion, role)
 
 
 @bot.event
