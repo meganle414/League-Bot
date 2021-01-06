@@ -19,6 +19,7 @@ def get_champion_name(champion):
 
 
 def build_url(champion, role):
+# try to use contains to have the role be able to be shorted like t, j, m, b, s
     if role == "not specified":
         return "https://u.gg/lol/champions/{}/build".format(champion)
     return "https://u.gg/lol/champions/{}/build?role={}".format(champion, role)
