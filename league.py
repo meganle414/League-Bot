@@ -29,7 +29,7 @@ def get_champion_name(champion):
     for champion_text in champion.find_all(name="strong"):
         return champion_text.text
 
-
+# make this a function
 print("Page is ready")
 html = browser.execute_script("return document.getElementsByTagName('html')[0].innerHTML")
 soup = BeautifulSoup(html, "html.parser")
