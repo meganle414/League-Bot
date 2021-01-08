@@ -15,9 +15,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Webscrapes from https://u.gg
-league.py - local program to print the top 30 ranked champions and their respective roles and win rate
-bot.py - local program to be run that can allow users on Discord to input commands to print the top 30 ranked champions and their respective roles and win rate or specify a role and/or number of champions to print.
+# Webscrapes from https://u.gg
+# league.py - local program to print the top 30 ranked champions and their respective roles and win rate
+# bot.py - local program to be run that can allow users on Discord to input commands to print the top 30 ranked champions and their respective roles and win rate or specify a role and/or number of champions to print.
 
 [league-bot-screenshot](https://imgur.com/a/b2vv2kT)
 
