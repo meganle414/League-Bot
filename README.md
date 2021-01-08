@@ -21,9 +21,7 @@
 
 ### Built With
 
-* [Python]()
-* [Selenium]()
-* [Beautiful soup]()
+* [Python
 
 <!-- CONTACT -->
 ## Contact
