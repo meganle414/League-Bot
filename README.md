@@ -15,20 +15,20 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-## Webscrapes from [u-gg]: https://u.gg
+## Webscrapes from https://u.gg
 
 [league-bot-screenshot](https://imgur.com/a/b2vv2kT)
 
 ### Built With
 
-* [python](Python)
-* [selenium](Selenium)
-* [beautiful-soup](Beautiful Soup)
+* [Python]()
+* [Selenium]()
+* [Beautiful soup]()
 
 <!-- CONTACT -->
 ## Contact
 
-Megan Le - [email]: meganle414@gmail.com
+Email: meganle414@gmail.com
 
 Project Link: [https://github.com/moooooogen/League-Bot](https://github.com/moooooogen/League-Bot)
 
