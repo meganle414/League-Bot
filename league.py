@@ -2,8 +2,6 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 
 
-
-
 def get_alt_img_text(item):
     img_html = item.find('img')
     img_text = img_html['alt']
