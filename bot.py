@@ -19,7 +19,6 @@ def get_champion_name(champion):
 
 
 def build_url(champion, role):
-# try to use contains to have the role be able to be shorted like t, j, m, b, s
     if role == "not specified":
         return "https://u.gg/lol/champions/{}/build".format(champion)
     return "https://u.gg/lol/champions/{}/build?role={}".format(champion, role)
@@ -155,7 +154,16 @@ async def help(ctx):
                                                              '**[bot lane, bot, adc, apc, b]**, '
                                                              '**[support, supp, sup, s]**\n'
                                                              'Equivalent commands usable: tl, TL', inline=False)
-
+    embed.add_field(name='l!search <Champion> <Role>', value='Returns the information on a specific champion. '
+                                                             'Defaults to meta role of champion if a role is not '
+                                                             'specified.\n'
+                                                             '**Choose from the following roles (case insensitive):**\n'
+                                                             '**[all, a]**, **[top lane, top, tl, t]**, '
+                                                             '**[jungle, jg, j]**, '
+                                                             '**[middle lane, mid lane, middle, mid, ml, m]**,'
+                                                             '**[bot lane, bot, adc, apc, b]**, '
+                                                             '**[support, supp, sup, s]**\n'
+                                                             'Equivalent commands usable: s, S', inline=False)
     await author.send(embed=embed)
     embed.set_author(name='Help')
 
