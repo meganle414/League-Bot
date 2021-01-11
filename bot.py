@@ -126,9 +126,9 @@ async def search(message, champion, role="not specified"):
     html = browser.execute_script("return document.getElementsByTagName('html')[0].innerHTML")
     soup = BeautifulSoup(html, "html.parser")
 
-    for item in soup.find_all('div', class_='champion-label'):
-        for item_text in item.find_all(name="span"):
-            st += (item_text.text + "\n")  # retrieves the champion's name and role name
+    # for item in soup.find_all('div', class_='champion-label'):
+    #     for item_text in item.find_all(name="span"):
+    #         st += (item_text.text + "\n")  # retrieves the champion's name and role name
 
     await message.send(st)
 
