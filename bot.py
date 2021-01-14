@@ -130,7 +130,9 @@ async def search(message, champion, role="not specified"):
         for item_header in item.find_all('h1'):
             for item_text in item_header.find_all(name="span"):
                 st += (item_text.text + "\n")  # retrieves the champion's name and role name
-
+                
+    # should add another block to retrieve the data, runes, build
+    
     await message.send(st)
 
     # close the automated browser
