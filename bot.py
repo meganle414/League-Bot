@@ -126,6 +126,8 @@ async def search(message, champion, role="not specified"):
     html = browser.execute_script("return document.getElementsByTagName('html')[0].innerHTML")
     soup = BeautifulSoup(html, "html.parser")
 
+    # for item in soup.find_all('div', class ='tier-header'):   # doesn't work
+    #     st += (item_text.text + "\n")
     for item in soup.find_all('div', class_='champion-header-info'):
         for item_header in item.find_all('h1'):
             for item_text in item_header.find_all(name="span"):
