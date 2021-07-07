@@ -126,15 +126,16 @@ async def search(message, champion, role="not specified"):
     html = browser.execute_script("return document.getElementsByTagName('html')[0].innerHTML")
     soup = BeautifulSoup(html, "html.parser")
 
-    # for item in soup.find_all('div', class ='tier-header'):   # doesn't work
-    #     st += (item_text.text + "\n")
-    for item in soup.find_all('div', class_='champion-header-info'):
-        for item_header in item.find_all('h1'):
-            for item_text in item_header.find_all(name="span"):
-                st += (item_text.text + "\n")  # retrieves the champion's name and role name
-                
-    # should add another block to retrieve the data, runes, build
-    
+    for item in soup.find_all('div', class_='seo-fluff media-query media-query_TABLET__DESKTOP_LARGE'):
+        title = item.text
+        title = title.split("Everything you need for ", 1)[1]
+        title = title.split(".", 1)[0]
+        st += (title + " in Platinum+\n")
+
+    for item in soup.find_all('div', class_='win-rate'):
+        st += item.text[0:6] + " win rate | "
+        break
+
     await message.send(st)
 
     # close the automated browser
