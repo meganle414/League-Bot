@@ -137,7 +137,7 @@ async def search(message, champion, role="not specified"):
         st += item.text + " tier | "
 
     for item in soup.find_all('div', class_='win-rate'):
-        st += item.text[0:6] + " win rate | "
+        st += item.text.replace("Win Rate", "") + " win rate | "
         break
 
     for item in soup.find_all('div', class_='overall-rank'):
