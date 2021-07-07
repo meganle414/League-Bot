@@ -30,7 +30,7 @@ async def on_ready():
 
 
 @bot.command(aliases=['tl', 'TL'])
-async def tierlist(message, num=10, role="all"):
+async def tier_list(message, num=10, role="all"):
     # initialize the arrays and other variables that will be used
     stats = []
     odd_roles = []
