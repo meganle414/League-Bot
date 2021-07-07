@@ -127,14 +127,22 @@ async def search(message, champion, role="not specified"):
     soup = BeautifulSoup(html, "html.parser")
 
     for item in soup.find_all('div', class_='seo-fluff media-query media-query_TABLET__DESKTOP_LARGE'):
-        title = item.text
-        title = title.split("Everything you need for ", 1)[1]
-        title = title.split(".", 1)[0]
-        st += (title + " in Platinum+\n")
+        item_text = item.text
+        item_text = item_text.split("Everything you need for ", 1)[1]
+        patch = item_text.split(".", 2)[2]
+        item_text = item_text.split(".", 1)[0]
+        st += (item_text + " in Platinum+" + patch + "\n")  # gets the champion name, role, and patch number
+
+    for item in soup.find_all('div', class_='tier-header'):
+        st += item.text + " tier | "
 
     for item in soup.find_all('div', class_='win-rate'):
         st += item.text[0:6] + " win rate | "
         break
+
+    for item in soup.find_all('div', class_='overall-rank'):
+        item_text = item.text.replace("Rank", "").replace(" ", "")
+        st += "Rank " + item_text + "\n"
 
     await message.send(st)
 
