@@ -30,7 +30,7 @@
 
 Email: meganle414@gmail.com
 
-Project Link: [https://github.com/moooooogen/League-Bot](https://github.com/moooooogen/League-Bot)
+Project Link: [https://github.com/meganle414/League-Bot](https://github.com/meganle414/League-Bot)
 
 [u-gg]: https://u.gg
 [linkedin-url]: https://linkedin.com/in/meganle414/
