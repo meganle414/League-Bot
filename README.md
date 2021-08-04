@@ -25,6 +25,7 @@
 
 * Python
 * Selenium
+* BeautifulSoup
 
 <!-- CONTACT -->
 ## Contact
