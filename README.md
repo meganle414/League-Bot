@@ -24,6 +24,7 @@
 ### Built With
 
 * Python
+* Selenium
 
 <!-- CONTACT -->
 ## Contact
