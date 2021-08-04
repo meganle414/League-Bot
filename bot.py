@@ -144,6 +144,19 @@ async def search(message, champion, role="not specified"):
         item_text = item.text.replace("Rank", "").replace(" ", "")
         st += "Rank " + item_text + "\n"
 
+    trees = soup.find_all('div', {'class': 'perk-style-title'})
+
+    st += "Primary Tree: " + trees[0].text + "\nSecondary Tree: " + trees[1].text + "\n"
+
+    spells = []
+
+    for item in soup.find_all('div', {'class': 'summoner-spells'}):
+        for img in item.find_all('img', alt=True):
+            img_text = img['alt'].split()
+            spells.append(img_text[-1])
+
+    st += "Summoner Spells: " + spells[0] + "and " + spells[1] + "\n"
+
     await message.send(st)
 
     # close the automated browser
